@@ -7,13 +7,9 @@ import { TodosType } from '../todo-list/todo-list';
   templateUrl: './todo-item.html',
 })
 export class TodoItem {
-  @Input() todoItem: TodosType = {
-    title: '',
-    id: 0,
-    isCompleted: false,
-  };
-  @Output() shareId = new EventEmitter<TodosType>();
-  @Output() onDelete = new EventEmitter<TodosType>();
+  @Input() todoItem!: TodosType;
+  shareId = output<TodosType>();
+  onDelete = output<TodosType>();
 
   toogleCompleted = () => {
     this.todoItem.isCompleted = !this.todoItem.isCompleted;

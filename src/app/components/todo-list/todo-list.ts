@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TodoItem } from '../todo-item/todo-item';
+import { FormsModule } from '@angular/forms';
 
 export interface TodosType {
   title: string;
@@ -10,8 +11,9 @@ export interface TodosType {
 type FilterType = 'All' | 'Completed' | 'Uncompleted';
 
 @Component({
+  standalone: true,
   selector: 'app-todo-list',
-  imports: [TodoItem],
+  imports: [TodoItem, FormsModule],
   templateUrl: './todo-list.html',
 })
 export class TodoList {
@@ -61,7 +63,7 @@ export class TodoList {
       id: Number(Date.now()),
       isCompleted: false,
     };
-    this.todos.push(this.newTodo);
+    this.todos.unshift(this.newTodo);
     this.onTodoChange();
     this.filteredTodo = this.todos;
     this.newTask = '';
