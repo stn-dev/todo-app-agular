@@ -1,0 +1,19 @@
+<div
+  class="flex gap-10 w-full items-center justify-between border-b border-white/50 pb-3"
+>
+  <li [class]="todoItem.isCompleted ? 'line-through opacity-50' : ''">
+    {{ todoItem.title }}
+  </li>
+  <input
+    type="checkbox"
+    [checked]="todoItem.isCompleted"
+    class="size-4"
+    (change)="toogleCompleted()"
+  />
+  <button
+    (click)="deleteTask()"
+    [class]=" `py-2 px-6 rounded-lg text-lg  cursor-pointer border border-black text-white bg-black font-extrabold` "
+  >
+    x
+  </button>
+</div>

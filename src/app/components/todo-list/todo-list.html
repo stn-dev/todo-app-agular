@@ -1,0 +1,39 @@
+<div class="w-full flex flex-col gap-16 text-white font-semibold text-2xl">
+  <div class="flex flex-col gap-5">
+    <div class="flex gap-5">
+      <input
+        type="text"
+        placeholder="Add new Task"
+        [value]="newTask"
+        (input)="newTask = $event.target.value"
+        class="bg-transparent rounded-xl border-2 border-white/50 py-3 px-5 outline-none text-lg font-normal"
+      />
+      <button
+        (click)="addTodo()"
+        class="py-4 px-8 rounded-xl font-bold text-lg bg-black cursor-pointer"
+      >
+        Add
+      </button>
+    </div>
+    <div class="flex gap-2 justify-between">
+      @for (button of todoFilterType; track $index) {
+      <button
+        (click)="filterByType(button, $index)"
+        [class]=" `py-2 px-6 rounded-lg font-medium text-lg  cursor-pointer border border-black  ${avtiveFilterButtonId === $index ? 'text-white bg-black' : 'text-black bg-transparent'}` "
+      >
+        {{ button }}
+      </button>
+      }
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-8 shadow-xl px-5 py-10">
+    @for ( items of filteredTodo ; track items.id ) {
+    <app-todo-item
+      [todoItem]="items"
+      (shareId)="toogleItemStatus($event)"
+      (onDelete)="deleteTodo($event)"
+    />
+    }
+  </div>
+</div>
