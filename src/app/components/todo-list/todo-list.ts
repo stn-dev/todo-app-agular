@@ -15,6 +15,7 @@ type FilterType = 'All' | 'Completed' | 'Uncompleted';
   templateUrl: './todo-list.html',
 })
 export class TodoList {
+  // variables
   todoFilterType: FilterType[] = ['All', 'Completed', 'Uncompleted'];
   avtiveFilterButtonId: number = 0;
   todos: TodosType[] = [
@@ -24,16 +25,15 @@ export class TodoList {
   ];
   newTask = '';
   newTodo!: TodosType;
-
   completedTodo: TodosType[] = this.todos.filter(
     (todo) => todo.isCompleted === true
   );
   unCompletedTodo: TodosType[] = this.todos.filter(
     (todo) => todo.isCompleted === false
   );
-
   filteredTodo: TodosType[] = this.todos;
 
+  // methodes
   onTodoChange = () => {
     this.completedTodo = this.todos.filter((todo) => todo.isCompleted === true);
     this.unCompletedTodo = this.todos.filter(
@@ -50,6 +50,12 @@ export class TodoList {
   };
 
   addTodo = () => {
+    if (this.newTask.trim() === '') {
+      alert('Task cannot be empty');
+      this.newTask = '';
+      return;
+    }
+
     this.newTodo = {
       title: this.newTask,
       id: Number(Date.now()),
