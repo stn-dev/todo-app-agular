@@ -11,7 +11,7 @@ export class TodoItem {
   shareId = output<TodosType>();
   onDelete = output<TodosType>();
 
-  toogleCompleted = () => {
+  toggleCompleted = () => {
     this.todoItem.isCompleted = !this.todoItem.isCompleted;
     this.shareId.emit(this.todoItem);
   };

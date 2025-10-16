@@ -19,7 +19,7 @@ type FilterType = 'All' | 'Completed' | 'Uncompleted';
 export class TodoList {
   // variables
   todoFilterType: FilterType[] = ['All', 'Completed', 'Uncompleted'];
-  avtiveFilterButtonId: number = 0;
+  activeFilterButtonId: number = 0;
   todos: TodosType[] = [
     { title: 'Learn', id: 1, isCompleted: false },
     { title: 'Practice', id: 2, isCompleted: false },
@@ -35,16 +35,16 @@ export class TodoList {
   );
   filteredTodo: TodosType[] = this.todos;
 
-  // methodes
+  // methods
   onTodoChange = () => {
     this.completedTodo = this.todos.filter((todo) => todo.isCompleted === true);
     this.unCompletedTodo = this.todos.filter(
       (todo) => todo.isCompleted === false
     );
 
-    if (this.avtiveFilterButtonId === 0) {
+    if (this.activeFilterButtonId === 0) {
       this.filteredTodo = this.todos;
-    } else if (this.avtiveFilterButtonId === 1) {
+    } else if (this.activeFilterButtonId === 1) {
       this.filteredTodo = this.completedTodo;
     } else {
       this.filteredTodo = this.unCompletedTodo;
@@ -69,13 +69,13 @@ export class TodoList {
     this.newTask = '';
   };
 
-  toogleItemStatus = (todo: TodosType) => {
+  toggleItemStatus = (todo: TodosType) => {
     this.todos.map((item) => (item.id === todo.id ? todo : item));
     this.onTodoChange();
   };
 
   filterByType = (type: 'All' | 'Completed' | 'Uncompleted', id: number) => {
-    this.avtiveFilterButtonId = id;
+    this.activeFilterButtonId = id;
 
     if (type === 'All') {
       this.filteredTodo = this.todos;
